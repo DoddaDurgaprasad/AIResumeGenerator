@@ -124,7 +124,7 @@ Download PDF
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/<DoddaDurgaPrasad>/AIResumeGenerator.git
+git clone https://github.com/DoddaDurgaprasad/AIResumeGenerator.git
 
 cd AIResumeGenerator
 ```
