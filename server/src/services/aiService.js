@@ -138,11 +138,10 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 }
 
 async function generatePdfFromHtml(htmlContent) {
-    console.log("Chrome executable:", puppeteer.executablePath());
 
     const browser = await puppeteer.launch({
-        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         headless: true,
+        executablePath: "/opt/render/.cache/puppeteer/chrome/linux-150.0.7871.24/chrome-linux64/chrome",
         args: [
             "--no-sandbox",
             "--disable-setuid-sandbox",
@@ -152,7 +151,10 @@ async function generatePdfFromHtml(htmlContent) {
     });
 
     const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: "networkidle0" });
+
+    await page.setContent(htmlContent, {
+        waitUntil: "networkidle0"
+    });
 
     const pdfBuffer = await page.pdf({
         format: "A4",
@@ -165,8 +167,9 @@ async function generatePdfFromHtml(htmlContent) {
     });
 
     await browser.close();
+
     return pdfBuffer;
-} 
+}
 async function generateResumePdf({ resume, selfDescription, jobDescription }) {
     const prompt = `You are an expert ATS (Applicant Tracking System) Optimization Engineer and professional resume writer. 
 Your task is to take the candidate's original resume data, self-description, and target job description, and completely re-engineer it into an optimized, professional HTML resume.
