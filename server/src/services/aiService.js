@@ -141,7 +141,6 @@ async function generatePdfFromHtml(htmlContent) {
 
     const browser = await puppeteer.launch({
         headless: true,
-        executablePath: "/opt/render/.cache/puppeteer/chrome/linux-150.0.7871.24/chrome-linux64/chrome",
         args: [
             "--no-sandbox",
             "--disable-setuid-sandbox",
@@ -158,6 +157,7 @@ async function generatePdfFromHtml(htmlContent) {
 
     const pdfBuffer = await page.pdf({
         format: "A4",
+        printBackground: true,
         margin: {
             top: "20mm",
             bottom: "20mm",
