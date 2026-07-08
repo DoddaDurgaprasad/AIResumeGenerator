@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../authForm.scss"
-import "../../../style/Button.scss"
+import "../../../style/button.scss"
 import {useAuth} from '../hooks/useAuth'
 
 const Login=()=>{
