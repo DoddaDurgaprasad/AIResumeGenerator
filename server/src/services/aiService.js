@@ -141,7 +141,7 @@ async function generatePdfFromHtml(htmlContent) {
     console.log("Chrome executable:", puppeteer.executablePath());
 
     const browser = await puppeteer.launch({
-        executablePath: puppeteer.executablePath(),
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
         headless: true,
         args: [
             "--no-sandbox",
