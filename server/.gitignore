@@ -21,7 +21,7 @@ lerna-debug.log*
 
 # Local files
 *.local
-om.text
+
 # OS files
 .DS_Store
 Thumbs.db
