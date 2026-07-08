@@ -150,8 +150,12 @@ async function generatePdfFromHtml(htmlContent) {
 
     const page = await browser.newPage();
 
+    // 1. Set a longer global timeout (or set it to 0 to disable timeouts completely)
+    await page.setDefaultNavigationTimeout(60000); // 60 seconds
+
+    // 2. Change 'networkidle0' to 'domcontentloaded' or 'load' so it doesn't hang on external assets
     await page.setContent(htmlContent, {
-        waitUntil: "networkidle0"
+        waitUntil: "domcontentloaded" // 🔥 Faster and won't crash if an external font/image takes too long
     });
 
     const pdfBuffer = await page.pdf({
